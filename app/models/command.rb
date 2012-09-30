@@ -2,6 +2,9 @@ class Command < ActiveRecord::Base
   # attr_accessible :title, :body
   
   def oneline(command, list, user)
+    while command[0] == ":"
+      command = command[1..command.size]
+    end
     parsed = command.split()
     self.execute(parsed, list, user)
   end
@@ -10,13 +13,13 @@ class Command < ActiveRecord::Base
     command = lst[0]
     args = lst[1..lst.size]
     case command
-    when ':n'
+    when 'n'
       self.add_new_item(args, list)  
-    when ':nl'
+    when 'nl'
       self.add_new_list(args, user)
-    when ":d"
+    when "d"
       self.delete_item(args, list)
-    when ":dl"
+    when "dl"
       self.delete_list(args, user)
     else
       return "Invalid command"
@@ -48,10 +51,14 @@ class Command < ActiveRecord::Base
       number = lst[lst.size - 2].to_i
       lst = lst[0..(lst.size - 4)]
       the_date = Time.now
-      if time_field.include?("day")
+      if time_field.include?("week")
+        the_date += number * 7 * 24 * 3600
+      elsif time_field.include?("day")
         the_date += number * 24 * 3600
       elsif time_field.include?("hour")
         the_date += number * 3600
+      elsif time_field.include?("minute")
+        the_date += number * 60
       else
         the_date += number    
       end
