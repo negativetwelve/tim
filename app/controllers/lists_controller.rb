@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  respond_to :html, :js, :json
   
   def new
     @list = List.new
@@ -13,6 +14,10 @@ class ListsController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def show
+    @list = List.find(params[:id])
   end
   
   

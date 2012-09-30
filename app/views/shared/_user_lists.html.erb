@@ -1,5 +1,9 @@
-<h3>My Lists</h3><%= link_to "new", '/new' %>
+<div class="sidebar">
+<h3>My Lists</h3><br>
 
-<% @user.lists do |list| %>
-  <%= list.name %>
+<div class="list_show">
+<% @user.lists.each do |list| %>
+<%= list.index %>. <%= link_to list.name, {:controller => 'sessions', :action => 'set_list', :list => list} %><br>
 <% end %>
+</div>
+</div>

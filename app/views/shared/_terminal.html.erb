@@ -1,0 +1,11 @@
+<div class="terminal">
+  <div class="terminal-text">
+  <span>
+    <%= form_for @command, :url => { :controller => "command", :action => "parse" }, :html => {:class => "terminal-form"} do |f| %>
+    <%= f.text_field :input, class: "terminal-input", style: "background-color:#34694F; border:none; color:black"%>
+      <%= f.submit "Create", class: "enter" %>
+    <% end %>
+</div>
+  </span>
+  </div>
+</div>

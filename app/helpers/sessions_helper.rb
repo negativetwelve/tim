@@ -3,6 +3,18 @@ module SessionsHelper
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
     self.current_user = user
+    if self.current_user.lists.count == 0
+      @list = List.create(name: "Todo List", index: 1)
+      @list.user = user
+      @list.save
+    end
+    cookies.permanent[:list_id] = user.lists.first.id
+  end
+
+  def set_list
+    cookies.permanent[:list_id] = params[:list]
+    self.current_list = List.find(params[:list])
+    redirect_to root_path
   end
 
   def signed_in?
@@ -15,6 +27,14 @@ module SessionsHelper
 
   def current_user
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+  end
+  
+  def current_list=(list)
+    @current_list = list
+  end
+  
+  def current_list
+    @current_list ||=List.find(cookies[:list_id])
   end
 
   def current_user?(user)

@@ -9,6 +9,9 @@ Tim::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
       
   match '/new', to: 'lists#new'
+  match '/submit', to: 'command#parse'
+  match '/list', to: 'sessions#set_list'
+  
   resources :lists
       
   root to: 'static_pages#home'

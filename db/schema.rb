@@ -11,13 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929184856) do
+ActiveRecord::Schema.define(:version => 20120930022707) do
+
+  create_table "commands", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.text     "input"
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.integer  "priority"
+    t.boolean  "isdone"
+    t.text     "description"
+    t.datetime "deadline"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "list_id"
+    t.integer  "index"
+  end
 
   create_table "lists", :force => true do |t|
     t.string   "name"
     t.datetime "deadline"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "index"
   end
 
   create_table "microposts", :force => true do |t|

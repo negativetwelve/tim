@@ -11,3 +11,79 @@
  *= require_self
  *= require_tree .
 */
+
+.full {
+  width: 100%;
+}
+
+.terminal {
+  display:  none;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  line-height: 20px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.terminal-text {
+  //padding-left: 10px;
+}
+
+.terminal-box {
+  line-height: 15px;
+  width: 100%;
+  background-color: red;
+  border: none;
+}
+
+.enter {
+  display: none;
+}
+
+.terminal-form {
+  margin: 0 0 -10px;
+}
+
+.terminal-input {
+  background-color: transparent;
+}
+
+.terminal-form input, select {
+  background-color: transparent;
+  border: none;  
+}
+
+.terminal-box input, select { background-color:transparent; border:none; }
+
+.middle {
+  width: 100%;
+  height: 1500px;
+}
+
+.column1 {
+  background-color: #71A9FF;
+  width: 20%;
+  float: left;
+  height: 100%;
+}
+
+.column2 {
+  color: white;
+  background-color: black;
+  width: 80%;
+  float: left;
+  height: 100%;
+}
+
+.column1-inner {
+  padding: 15px;
+}
+
+.column2-inner {
+  padding: 15px;
+}
+
+.table tr:hover {
+  color: black;
+}

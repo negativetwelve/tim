@@ -1,17 +1,37 @@
+<script>
+$(window).keypress(function(e){
+  var key = e.which;
+  var keychar = String.fromCharCode(key);
+  if (key == 58) { <!-- this is the code for : -->
+    $(".terminal").show();
+    $(".terminal-input").focus();
+     <!-- call the separate div here-->
+  }
+});
+$(window).keyup(function(e) {
+  if (e.keyCode == 27) {
+    $(".terminal").hide();
+  }
+});
+</script>
+
 <% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
+    <div class="middle">
+    <aside class="column1">
+      <div class="column1-inner">
         <%= render 'shared/user_lists' %>
-      </section>
+      </div>
     </aside>
-    <div class="span8">
-      <h3>Todos</h3>
+    <div class="column2">
+      <div class="column2-inner">
+        <% if current_user.lists.size > 0 %>
+      <%= render 'shared/list' %>
+      <% end %>
+    </div>
     </div>
   </div>
+  <% @command = Command.new %>
+  <%= render "shared/terminal" %>
 <% else %>
   <div class="center hero-unit">
     <h1>Welcome to Tim an Online Vim-style Productivity App</h1>

@@ -1,0 +1,28 @@
+<h3><%= @list.name %></h3><br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Index</th>
+            <th>Name</th>
+            <th>Priority</th>
+            <th>Deadline</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @list.items.where(isdone: false).each do |item| %>
+      <tr>
+        <td><%= item.index%></td>
+        <td><%= item.name %></td>
+        <td><%= item.priority %></td>
+        <td>
+          <% if item.deadline.nil? %>
+            <%= item.deadline %>
+          <% else %>
+            <%= distance_of_time_in_words_to_now(item.deadline) %>
+         <% end %>
+       </td>
+      </tr>
+      <% end %>
+        
+        </tbody>
+</table>
